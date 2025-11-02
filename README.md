@@ -1,4 +1,4 @@
-### BELTS FLOW MODEL
+# BELTS FLOW MODEL
 
 ## Assumptions made
 - Input is a valid json file.
@@ -14,7 +14,7 @@
 
 
 ## Modeling Choices
-# Max-Flow with Lower Bounds
+### Max-Flow with Lower Bounds
 - Covert the edge capacity to (hi - lo).
 - Maintain the lower bound by adjusting node demands:
 demand[v] += lo, demand[u] -= lo.
@@ -22,19 +22,19 @@ demand[v] += lo, demand[u] -= lo.
 - Connect nodes with positive demand to T* and nodes with negative demand to S*.
 - Feasibility check: the flow from S* to T* must equal total demand.
 
-# Order of operations:
+### Order of operations:
 - Parse JSON and build node/edge lists.
 - Apply lower-bound transformation.
 - Add node capacity edges (via splitting).
 - Add super-source/sink edges.
 - Run Dinic’s algorithm.
 
-# Node-Splitting for Capacity Constraints
+### Node-Splitting for Capacity Constraints
 Each node X is represented as:
 X_in → X_out  (capacity = node_cap[X])
 All incoming edges connect to X_in and outgoing edges start from X_out.
 
-# Infeasibility Certificates (Min-Cut)
+### Infeasibility Certificates (Min-Cut)
 When Feasible:
 - Restore the original graph with lower bounds and node splits.
 - Run a standard max-flow from actual sources to sink to compute total achievable flow.
@@ -48,9 +48,9 @@ When Infeasible:
 - Nodes on the source side are those whose demands cannot be fully satisfied.
 - This set is reported or logged as an infeasibility witness.
 
-# NOTE:
+### NOTE:
 A small part of the structure was refined using LLM for clarity and code formatting, but the core algorithmic logic, transformations, and feasibility modeling are fully my own work.
 
 ------------------------------------------------------------------------------------------------
-### FACTORY STEADY STATE
+# FACTORY STEADY STATE
 - Not done
